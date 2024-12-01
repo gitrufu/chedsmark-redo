@@ -1,24 +1,32 @@
 /* General Styles */
-body, html {
+html {
+    scroll-behavior: smooth;
+}
+html, body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling for links */
+    overscroll-behavior: none;
 }
+
+
 
 /* Navbar Styles */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background: transparent;
-    position: absolute;
-    width: 95%;
+    position: fixed; /* Fixes the navbar at the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width */
+    background: rgba(0, 0, 0, 0.8); /* Slight transparency for elegance */
     z-index: 1000;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow */
 }
 
+
 .navbar-brand {
-    font-size: 30px;
+    font-size: 45px;
     font-weight: bold;
     color: #ff7200;
 }
@@ -31,7 +39,10 @@ body, html {
 }
 
 .nav-item {
-    margin-left: 35px;
+    margin-left: 45px;
+    margin-right: 45px;
+    font-weight: bold;
+
 }
 
 .nav-link {
@@ -171,7 +182,7 @@ body, html {
 
 .team-member:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 16px orangered;
 }
 
 .team-member img {
@@ -194,7 +205,7 @@ body, html {
 
 /* Services Section Styles */
 .services-section {
-    background-color: #fff;
+    background-color: black;
     padding: 50px 20px;
     text-align: center;
 }
@@ -233,7 +244,7 @@ body, html {
 
 .service-item:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 20px orangered;
 }
 
 .service-item i {
@@ -268,4 +279,299 @@ body, html {
 .book-now-btn:hover {
     background-color: orangered;
 }
+
+
+/* Contact Section */
+.contact-section {
+    background: black;
+    color: whitesmoke;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.contact-section h2 {
+    color: #ff7720;
+    font-size: 40px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.contact-section h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: #ff7720;
+    margin: 10px auto 0;
+}
+
+.contact-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #ff7720;
+    background: transparent;
+    color: #fff;
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: #fff;
+}
+
+.submit-btn {
+    background-color: #ff7720;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.submit-btn:hover {
+    background-color: orangered;
+}
+
+.contact-info {
+    text-align: left;
+    font-size: 16px;
+}
+
+.contact-info i {
+    color: #ff7720;
+    margin-right: 10px;
+}
+
+.social-icons a {
+    color: whitesmoke;
+    margin-right: 10px;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #ff7720;
+}
+
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column; /* Stack navbar items vertically */
+        align-items: center;
+    }
+    .nav-item {
+        margin-left: 0; /* Remove horizontal spacing */
+        margin-bottom: 10px; /* Add vertical spacing */
+    }
+    .hero h1 {
+        font-size: 40px; /* Adjust hero text size for smaller screens */
+    }
+    .services-grid {
+        grid-template-columns: 1fr; /* One column layout for services */
+    }
+    .contact-wrapper {
+        flex-direction: column; /* Stack form and contact info vertically */
+        gap: 20px;
+    }
+    .navbar-brand {
+        font-size: 35px;
+    }
+}
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    border: none;
+    background: none;
+    z-index: 1001;
+    margin-left: 298px;
+    margin-top: -38px;
+}
+
+.hamburger-menu span {
+    display: block;
+    height: 2px;
+    width: 25px;
+    margin: 3px 0;
+    background: #ff7200;
+    transition: all 0.3s;
+}
+
+/* Navbar responsive behavior */
+.navbar-nav {
+    display: flex;
+    list-style: none;
+}
+
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: flex;
+        order: 1;
+    }
+
+    .navbar-nav {
+        position: fixed;
+        top: 60px; /* Adjust based on navbar height */
+        left: -100%;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.7);
+        height: calc(100% - 60px);
+        transition: left 0.3s ease;
+        order: 2;
+    }
+
+    .navbar-nav.open {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 10px 0;
+    }
+    .navbar-brand {
+        order: 0; /* Keep brand on the left */
+    }
+}
+
+/* Scroll-Up Indicator */
+.scroll-up-indicator {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 24px;
+    animation: bounce 1.5s infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.scroll-up-indicator i {
+    font-size: 30px;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translate(-50%, 0);
+    }
+    40% {
+        transform: translate(-50%, -10px);
+    }
+    60% {
+        transform: translate(-50%, -5px);
+    }
+}
+
+
+/* Modal Styles */
+/* Modal Styles */
+.popup-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Transparent black background */
+    z-index: 1002;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background: rgba(0, 0, 0, 1); /* Slightly transparent white */
+    color: white; /* Ensure text is visible */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.9); /* Add depth to the modal */
+    animation: fadeIn 0.5s ease-in-out; /* Smooth appearance */
+}
+
+.popup-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.dismiss-btn, .close-modal-btn {
+    background: white; /* Semi-transparent black */
+    color: #ff7720;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.dismiss-btn:hover, .close-modal-btn:hover {
+    background: #ff7720;
+    color: white;
+}
+
+/* Modal Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Footer Bottom */
+.footer-bottom {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 14px;
+    color: gray;
+}
+.footer {
+    background-color: black;
+    color: whitesmoke;
+    padding: 50px 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+@media (max-width: 768px) {
+    .footer .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+}
+
+
+
+
+
+
+
 
