@@ -58,19 +58,9 @@
             </div>
             <div class="team-container">
                 <div class="team-member">
-                    <img src="cheds.jpg" alt="Team Member 1">
-                    <h4>John Doe</h4>
+                    <img src="new.webp" alt="Team Member 1">
+                    <h4>Sam Chedimbwa</h4>
                     <p>Lead Engineer</p>
-                </div>
-                <div class="team-member">
-                    <img src="cheds.jpg" alt="Team Member 2">
-                    <h4>Jane Smith</h4>
-                    <p>Project Manager</p>
-                </div>
-                <div class="team-member">
-                    <img src="cheds.jpg" alt="Team Member 3">
-                    <h4>Mark Lee</h4>
-                    <p>Energy Consultant</p>
                 </div>
             </div>
         </div>
@@ -153,14 +143,19 @@
                         <input type="email" name="email" placeholder="Your Email" class="form-control" required>
                     </div>
                     <div class="form-group">
+                        <input type="text" name="phone" placeholder="Enter 10 digits only" class="form-control" required>
+                    </div>
+                    <div class="form-group">
                         <textarea name="message" id="message" placeholder="Additional Message" class="form-control" required></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Submit</button>
-                </form>
-
+                </form>               
                 <!-- Contact Info -->
                 <div class="contact-info">
-                    <p><i class="fas fa-map-marker-alt" href="https://www.google.com/maps/place/Bristol+Rd,+Gweru,+Zimbabwe/@-19.4710525,%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%2029.7872302,17.79z/data=!4m6!3m5!1s0x193494a50a87c215:0xeadd5349b84044e!8m2!3d-19.4640008!4d29%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20.7973437!16s%2Fg%2F1td5tjtq?entry=ttu"></i> Bata Estate, Bristol Road, Gweru, Zimabwe</p>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i> 
+                        <a href="https://maps.app.goo.gl/wzqGY6ef4YXizMHt6" target="_blank"> Bata Estate,Bristol Road,Gweru,Zimabwe</a>
+                    </p>                    
                     <p><i class="fas fa-phone"></i> +263-773-939-742</p>
                     <p><i class="fas fa-envelope"></i> customerservices@chedsmark.co.zw</p>
                     <div class="social-icons">
@@ -177,7 +172,7 @@
     <div id="popupModal" class="popup-modal">
         <div class="popup-content">
             <button class="close-modal-btn">&times;</button>
-            <p id="modalText">Thank you for contacting us!</p>
+            <p id="modalText">Thank you for contacting us. We'll be in touch shortly.</p>
             <button class="dismiss-btn">Dismiss</button>
         </div>
     </div>
@@ -333,13 +328,69 @@
             });
         }
 
+        // Show error modal if triggered
+        window.addEventListener('load', () => {
+            if (localStorage.getItem('errorModal')) {
+                showModal("Please fix the following errors:<br>" + localStorage.getItem('errorModal'));
+                localStorage.removeItem('errorModal');
+            }
+
+            if (localStorage.getItem('thankYouModal')) {
+                showModal("Thank you for contacting us!");
+                localStorage.removeItem('thankYouModal');
+            }
+        });
+
+
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            let valid = true;
+            let errorMessages = [];
+
+            this.querySelectorAll('.form-control').forEach(input => {
+                const value = input.value.trim();
+
+                if (input.name === "phone") {
+                    // Validate phone number (10 digits only, no country code)
+                    if (!/^\d{10}$/.test(value)) {
+                        valid = false;
+                        errorMessages.push("Phone number must be exactly 10 digits without a country code.");
+                        input.style.borderBottomColor = 'red'; // Highlight error
+                    } else {
+                        input.style.borderBottomColor = '#ff7720'; // Reset highlight
+                    }
+                } else if (input.name === "message") {
+                    // Validate message (alphanumeric, max 100 chars)
+                    if (!value || /[^a-zA-Z0-9\s]/.test(value)) {
+                        valid = false;
+                        errorMessages.push("Additional message can only contain alphanumeric characters and spaces.");
+                        input.style.borderBottomColor = 'red'; // Highlight error
+                    } else {
+                        input.style.borderBottomColor = '#ff7720'; // Reset highlight
+                    }
+                } else {
+                    // Validate other fields (non-empty)
+                    if (!value) {
+                        valid = false;
+                        errorMessages.push(`${input.placeholder} is required.`);
+                        input.style.borderBottomColor = 'red'; // Highlight error
+                    } else {
+                        input.style.borderBottomColor = '#ff7720'; // Reset highlight
+                    }
+                }
+            });
+
+            if (!valid) {
+                e.preventDefault();
+                showModal("Please fix the following errors:<br>" + errorMessages.join("<br>"));
+            }
+        });
 
 
     </script>
 
     <footer class="footer">
         <div class="footer-bottom">
-            <p>&copy; 2024 Chedsmark Power Engineering. All Rights Reserved.</p>
+            <p>&copy; 2025 Chedsmark Power Engineering. All Rights Reserved.</p>
         </div>
     </footer>
 
