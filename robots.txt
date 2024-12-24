@@ -1,0 +1,31 @@
+# robots.txt file for https://yourdomain.com
+
+# Allow all bots to crawl the entire site
+User-agent: *
+Disallow:
+
+# Disallow crawling of specific folders (e.g., admin, private, temporary files)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cgi-bin/
+
+# Disallow crawling of specific files (e.g., login pages, scripts)
+Disallow: /login.html
+Disallow: /register.html
+Disallow: /scripts/
+
+# Prevent specific bots from crawling the site
+User-agent: BadBot
+Disallow: /
+
+# Allow specific bots to access the entire site (e.g., Googlebot)
+User-agent: Googlebot
+Disallow:
+
+# Specify the location of the sitemap
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Optional: Rate limiting (specifying crawl delay in seconds for all bots)
+# User-agent: *
+# Crawl-delay: 10

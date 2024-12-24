@@ -569,6 +569,22 @@ html, body {
 }
 
 
+/* Error Highlight */
+.form-control {
+    border-bottom: 2px solid #ccc; /* Default */
+    transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+    border-bottom-color: #ff7720; /* Highlight on focus */
+}
+
+.form-control.error {
+    border-bottom-color: red; /* Highlight errors */
+}
+
+
+
 
 
 
