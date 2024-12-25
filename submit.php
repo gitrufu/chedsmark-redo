@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $errors = [];
-    $conn = new mysqli("localhost", "root", "", "chedsmark");
+    $conn = new mysqli("localhost", "chedsmar_Cheds", "@Chedsmark24", "chedsmar_chedsmark.co.zw");
 
     if ($conn->connect_error) {
         $errors[] = "Database connection failed.";
